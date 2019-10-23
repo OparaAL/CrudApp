@@ -1,12 +1,9 @@
 ﻿using CrudApp.Models;
 using CrudApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CrudApp.Controllers
 {
@@ -35,7 +32,8 @@ namespace CrudApp.Controllers
             };
             if (!String.IsNullOrEmpty(searchString) && dep != 0)
             {
-                cmView.Employees = cmView.Employees.Where(e => e.FullName.Contains(searchString)
+                cmView.Employees = cmView.Employees.Where(e => (e.FullName.Contains(searchString)
+                || e.Code.Contains(searchString))
                 && e.DepartmentId == dep).ToList();
             }
             else if (String.IsNullOrEmpty(searchString) && dep != 0)
@@ -44,7 +42,8 @@ namespace CrudApp.Controllers
             }
             else if (dep == 0 && !String.IsNullOrEmpty(searchString))
             {
-                cmView.Employees = cmView.Employees.Where(e => e.FullName == searchString).ToList();
+                cmView.Employees = cmView.Employees.Where(e => e.FullName.Contains(searchString)
+                || e.Code.Contains(searchString)).ToList();
             }
             else cmView.Employees = cmView.Employees.ToList();
             return View(cmView);

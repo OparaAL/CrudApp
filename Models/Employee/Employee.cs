@@ -10,13 +10,13 @@ namespace CrudApp.Models
     public class Employee
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input fullname of employee")]
         public string FullName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input date of birth")]
         public DateTime DateOfBirth { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input code")]
         public string Code { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input fullname of employee")]
         public int Salary { get; set; }
 
         public int? DepartmentId { get; set; }

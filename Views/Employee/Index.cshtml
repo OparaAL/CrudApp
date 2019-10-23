@@ -8,9 +8,9 @@
 <form asp-action="Index" method="get" asp-controller="Employee">
     <div class="form-actions no-color">
         <p>
-            Find by name or department:
+            Find by name or code:
             <input type="text" class="form-control" name="SearchString" value="@ViewData["currentFilter"]"
-                       placeholder="Fullname" autocomplete="off" />
+                       placeholder="Fullname or Code" autocomplete="off" />
             <select name="dep" class="form-control">
                 @foreach (var d in Model.Departments)
                 {
@@ -33,7 +33,7 @@
     {
     <tr>
         <td>@e.FullName</td>
-        <td>@e.DateOfBirth</td>
+        <td>@e.DateOfBirth.ToShortDateString()</td>
         <td>@e.Code</td>
         <td>@e.Salary</td>
         @if (e.DepartmentId != null)

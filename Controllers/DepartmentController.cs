@@ -22,7 +22,8 @@ namespace CrudApp.Controllers
             var departments = deptManager.GetAll();
             if (!String.IsNullOrEmpty(searchString))
             {
-                departments = departments.Where(e => e.Name.Contains(searchString)).ToList();
+                departments = departments.Where(d => d.Name.Contains(searchString)
+                || d.Code.Contains(searchString)).ToList();
             }
             return View(departments);
         }

@@ -9,9 +9,9 @@ namespace CrudApp.Models
     public class Department
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input name of department")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input code of department")]
         public string Code { get; set; }
         public ICollection<Employee> Employees { get; set; }
         public Department()

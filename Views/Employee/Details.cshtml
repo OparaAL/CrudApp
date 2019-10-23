@@ -1,0 +1,18 @@
+﻿@model CrudApp.Models.Employee
+@{
+    ViewBag.Title = Model.FullName;
+}
+
+<h2>Employee - @Model.FullName</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Department</dt>
+        <dd>@Model.Department.Name</dd>
+        <dt>Date of birth</dt>
+        <dd>@Model.DateOfBirth</dd>
+        <dt>Code</dt>
+        <dd>@Model.Code</dd>
+        <dt>Salary</dt>
+        <dd>@Model.Salary</dd>
+    </dl>
+</div>

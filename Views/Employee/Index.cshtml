@@ -1,0 +1,54 @@
+﻿@model CustomViewModel
+@{
+    ViewBag.Title = "All employees";
+}
+
+<a asp-action="Create">Create employee</a>
+<br/>
+<form asp-action="Index" method="get" asp-controller="Employee">
+    <div class="form-actions no-color">
+        <p>
+            Find by name or department:
+            <input type="text" class="form-control" name="SearchString" value="@ViewData["currentFilter"]"
+                       placeholder="Fullname" autocomplete="off" />
+            <select name="dep" class="form-control">
+                @foreach (var d in Model.Departments)
+                {
+                    <option value="@d.Id">@d.Name</option>
+                }
+            </select>
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+<table class="table" width="50">
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Date of birth</b></td>
+        <td><b>Code</b></td>
+        <td><b>Salary</b></td>
+        <td><b>Department</b></td>
+    </tr>
+    @foreach (Employee e in Model.Employees)
+    {
+    <tr>
+        <td>@e.FullName</td>
+        <td>@e.DateOfBirth</td>
+        <td>@e.Code</td>
+        <td>@e.Salary</td>
+        @if (e.DepartmentId != null)
+        {
+            <td>@e.Department.Name</td>
+        }
+        else
+        {
+            <td>No department</td>
+        }
+        <td>
+            <a asp-action="Details" asp-controller="Employee" asp-route-id="@e.Id">Подробнее</a> |
+            <a asp-action="Edit" asp-controller="Employee" asp-route-id="@e.Id">Изменить</a> |
+            <a asp-action="Delete" asp-controller="Employee" asp-route-id="@e.Id">Удалить</a>
+        </td>
+    </tr>
+    }
+</table>

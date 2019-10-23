@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Department>
+@{
+    ViewBag.Title = "All departments";
+}
+
+<a asp-action="Create" asp-controller="Department">Create department</a>
+<form asp-action="Index" method="get" asp-controller="Department">
+    <div class="form-actions no-color">
+        <p>
+            Find by name of department:
+            <input type="text" class="form-control" name="SearchString" placeholder="Name of department"
+                   value="@ViewData["currentFilter"]" autocomplete="off"/>
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+<a asp-action="Index" asp-controller="Department">Back to Full List</a>
+<table class="table" width="50">
+    <tr>
+        <td><b>Name</b></td>
+        <td><b>Code</b></td>
+    </tr>
+    @foreach (Department d in Model)
+    {
+    <tr>
+        <td>@d.Name</td>
+        <td>@d.Code</td>
+        <td>
+            <a asp-action="Details" asp-controller="Department" asp-route-id="@d.Id">Подробнее</a> |
+            <a asp-action="Edit" asp-controller="Department" asp-route-id="@d.Id">Изменить</a> |
+            <a asp-action="Delete" asp-controller="Department" asp-route-id="@d.Id">Удалить</a>
+        </td>
+    </tr>
+    }
+</table>

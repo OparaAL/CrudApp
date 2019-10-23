@@ -1,0 +1,36 @@
+﻿@model CrudApp.ViewModels.CustomViewModel;
+@{
+    ViewBag.Title = "Create employee";
+}
+
+<form asp-action="Create" asp-controller="Employee" method="post">
+    <div class="form-group">
+        <label asp-for="Employee.FullName" class="control-label">Full Name</label>
+        <input type="text" asp-for="Employee.FullName" class="form-control" />
+        <span asp-validation-for="Employee.FullName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.DateOfBirth" class="control-label">Age</label>
+        <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
+        <span asp-validation-for="Employee.DateOfBirth"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Code" class="control-label">Code</label>
+        <input type="text" asp-for="Employee.Code" class="form-control" />
+        <span asp-validation-for="Employee.Code"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.Salary" class="control-label">Salary</label>
+        <input type="number" asp-for="Employee.Salary" class="form-control" />
+        <span asp-validation-for="Employee.Salary"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Employee.DepartmentId">Department</label>
+        <select asp-for="Employee.DepartmentId" class="form-control"
+                asp-items="@(new SelectList(Model.Departments,"Id","Name"))"></select>
+        <span asp-validation-for="Employee.DepartmentId"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send" class="btn btn-default" />
+    </div>
+</form>

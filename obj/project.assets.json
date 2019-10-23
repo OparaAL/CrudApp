@@ -12367,11 +12367,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alex\\source\\repos\\CrudApp\\CrudApp\\CrudApp.csproj",
+      "projectUniqueName": "C:\\Users\\Alex\\Documents\\GitHub\\CrudApp\\CrudApp\\CrudApp.csproj",
       "projectName": "CrudApp",
-      "projectPath": "C:\\Users\\Alex\\source\\repos\\CrudApp\\CrudApp\\CrudApp.csproj",
+      "projectPath": "C:\\Users\\Alex\\Documents\\GitHub\\CrudApp\\CrudApp\\CrudApp.csproj",
       "packagesPath": "C:\\Users\\Alex\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alex\\source\\repos\\CrudApp\\CrudApp\\obj\\",
+      "outputPath": "C:\\Users\\Alex\\Documents\\GitHub\\CrudApp\\CrudApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

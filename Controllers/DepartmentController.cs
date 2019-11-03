@@ -46,7 +46,7 @@ namespace CrudApp.Controllers
             }
             catch
             {
-                ViewBag.Error = "Отдел с таким кодом или именем уже существует";
+                ViewBag.Error = "Department with the same code or name already exists.";
                 return View();
             }
         }
@@ -77,7 +77,7 @@ namespace CrudApp.Controllers
             }
             catch
             {
-                ViewBag.ErrorEdit = "Департамент с таким названием уже существует";
+                ViewBag.ErrorEdit = "Department with the same name already exists.";
                 return View(department);
             }
         }

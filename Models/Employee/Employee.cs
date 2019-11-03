@@ -9,6 +9,7 @@ namespace CrudApp.Models
 {
     public class Employee
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(ErrorMessage = "Input fullname of employee")]
         public string FullName { get; set; }
@@ -19,7 +20,9 @@ namespace CrudApp.Models
         [Required(ErrorMessage = "Input fullname of employee")]
         public int Salary { get; set; }
 
-        public int? DepartmentId { get; set; }
+        public string RestoreDepartment { get; set; }
+
+        public string DepartmentCode { get; set; } 
         public Department Department { get; set; }
     }
 }

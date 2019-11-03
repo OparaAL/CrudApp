@@ -17,6 +17,7 @@ namespace CrudApp.Models
 
         public void Create(Employee employee)
         {
+            employee.RestoreDepartment = employee.DepartmentCode;
             repo.Employees.Add(employee);
             repo.SaveChanges();
         }
@@ -27,7 +28,7 @@ namespace CrudApp.Models
             repo.SaveChanges();
         }
 
-        public List<Employee> GetAll() => repo.Employees.Include(e => e.Department).ToList();
+        public List<Employee> GetAll() => repo.Employees.ToList();
 
         public Employee GetById(int? id)
         {
@@ -41,9 +42,10 @@ namespace CrudApp.Models
             Employee employee = repo.Employees.FirstOrDefault(e => e.Id == empl.Id);
             employee.FullName = empl.FullName;
             employee.DateOfBirth = empl.DateOfBirth;
-            employee.DepartmentId = empl.DepartmentId;
+            employee.DepartmentCode = empl.DepartmentCode;
             employee.Salary = empl.Salary;
-            employee.Code = empl.Code;
+            employee.Code = employee.Code;
+            employee.RestoreDepartment = employee.Code;
             repo.Employees.Update(employee);
             repo.SaveChanges();
         }

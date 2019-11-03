@@ -16,41 +16,50 @@ namespace CrudApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("CrudApp.Models.Department", b =>
                 {
+                    b.Property<string>("Code")
+                        .ValueGeneratedOnAdd();
+
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Code");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.HasKey("Code");
 
-                    b.HasKey("Id");
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("CrudApp.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Code")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code");
 
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<int?>("DepartmentId");
+                    b.Property<string>("DepartmentCode");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FullName")
+                        .IsRequired();
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("RestoreDepartment");
 
                     b.Property<int>("Salary");
 
-                    b.HasKey("Id");
+                    b.HasKey("Code");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("DepartmentCode");
 
                     b.ToTable("Employees");
                 });
@@ -59,7 +68,7 @@ namespace CrudApp.Migrations
                 {
                     b.HasOne("CrudApp.Models.Department", "Department")
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentCode");
                 });
 #pragma warning restore 612, 618
         }

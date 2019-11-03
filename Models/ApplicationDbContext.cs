@@ -20,9 +20,19 @@ namespace CrudApp.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Department>()
-                .HasMany<Employee>(e => e.Employees)
-                .WithOne(d => d.Department)
-                .HasForeignKey(d => d.DepartmentId);
+                .HasMany<Employee>(d => d.Employees)
+                .WithOne(e => e.Department)
+                .HasForeignKey(e => e.DepartmentCode);
+
+            modelBuilder.Entity<Department>()
+                .HasKey(d => d.Code);
+
+            modelBuilder.Entity<Employee>()
+                .HasKey(e => e.Code);
+
+            modelBuilder.Entity<Department>()
+                .HasIndex(d => d.Name).IsUnique();
+
         }
     }
 }

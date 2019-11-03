@@ -3,6 +3,7 @@
     ViewBag.Title = "Create department";
 }
 
+    <p>@ViewBag.Error</p>
 <form asp-action="Create" asp-controller="Department" method="post">
     <div class="form-group">
         <label asp-for="Name" class="control-label">Name</label>
@@ -13,6 +14,10 @@
         <label asp-for="Code" class="control-label">Code</label>
         <input type="text" asp-for="Code" class="form-control" />
         <span asp-validation-for="Code"></span>
+    </div>
+    <div>
+        <input checked="checked" id="check" name="check" type="checkbox" value="true" />
+        <label for="check">Restore employee departments by department code</label>
     </div>
     <div class="form-group">
         <input type="submit" value="Send" class="btn btn-default" />

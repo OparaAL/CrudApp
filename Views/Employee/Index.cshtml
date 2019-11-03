@@ -14,7 +14,7 @@
             <select name="dep" class="form-control">
                 @foreach (var d in Model.Departments)
                 {
-                    <option value="@d.Id">@d.Name</option>
+                    <option value="@d.Code">@d.Name</option>
                 }
             </select>
             <input type="submit" value="Search" class="btn btn-default" />
@@ -36,7 +36,7 @@
         <td>@e.DateOfBirth.ToShortDateString()</td>
         <td>@e.Code</td>
         <td>@e.Salary</td>
-        @if (e.DepartmentId != null)
+        @if (e.DepartmentCode != null)
         {
             <td>@e.Department.Name</td>
         }

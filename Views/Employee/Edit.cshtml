@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Edit employee";
 }
+<p>@ViewBag.Error</p>
 <form asp-action="Edit" asp-controller="Employee" asp-route-id="@Model.Employee.Id">
     <div class="form-group">
         <input type="hidden" asp-for="Employee.Id" class="form-control" />
@@ -17,10 +18,8 @@
         <input type="date" asp-for="Employee.DateOfBirth" class="form-control" />
         <span asp-validation-for="Employee.DateOfBirth"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Employee.Code" class="control-label">Code</label>
+    <div class="hidden">
         <input type="text" asp-for="Employee.Code" class="form-control" />
-        <span asp-validation-for="Employee.Code"></span>
     </div>
     <div class="form-group">
         <label asp-for="Employee.Salary" class="control-label">Salary</label>
@@ -28,9 +27,9 @@
         <span asp-validation-for="Employee.Salary"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Employee.DepartmentId">Department</label>
-        <select asp-for="Employee.DepartmentId" class="form-control"
-                asp-items="@(new SelectList(Model.Departments,"Id","Name"))"></select>
+        <label asp-for="Employee.DepartmentCode">Department</label>
+        <select asp-for="Employee.DepartmentCode" class="form-control"
+                asp-items="@(new SelectList(Model.Departments,"Code","Name"))"></select>
     </div>
     <div class="form-group">
         <input type="submit" value="Send" class="btn btn-default" />

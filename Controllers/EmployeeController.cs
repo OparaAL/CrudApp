@@ -20,7 +20,7 @@ namespace CrudApp.Controllers
             deptManager = departmentRepository;
         }
 
-        public IActionResult Index(string searchString, int dep)
+        public IActionResult Index(string searchString, string dep)
         {
             ViewData["CurrentFilter"] = searchString;
             List<Department> deps = deptManager.GetAll();
@@ -30,17 +30,17 @@ namespace CrudApp.Controllers
                 Employees = empManager.GetAll(),
                 Departments = deps
             };
-            if (!String.IsNullOrEmpty(searchString) && dep != 0)
+            if (!String.IsNullOrEmpty(searchString) && dep != null)
             {
                 cmView.Employees = cmView.Employees.Where(e => (e.FullName.Contains(searchString)
                 || e.Code.Contains(searchString))
-                && e.DepartmentId == dep).ToList();
+                && e.DepartmentCode == dep).ToList();
             }
-            else if (String.IsNullOrEmpty(searchString) && dep != 0)
+            else if (String.IsNullOrEmpty(searchString) && dep != null)
             {
-                cmView.Employees = cmView.Employees.Where(e => e.DepartmentId == dep).ToList();
+                cmView.Employees = cmView.Employees.Where(e => e.DepartmentCode == dep).ToList();
             }
-            else if (dep == 0 && !String.IsNullOrEmpty(searchString))
+            else if (dep == null && !String.IsNullOrEmpty(searchString))
             {
                 cmView.Employees = cmView.Employees.Where(e => e.FullName.Contains(searchString)
                 || e.Code.Contains(searchString)).ToList();
@@ -61,17 +61,27 @@ namespace CrudApp.Controllers
         [HttpPost]
         public IActionResult Create(Employee employee)
         {
+            ViewBag.Error = null;
             var cmView = new CustomViewModel
             {
                 Departments = deptManager.GetAll()
             };
-            if (ModelState.IsValid)
+
+            try
             {
-                empManager.Create(employee);
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    empManager.Create(employee);
+                    return RedirectToAction("Index");
+                }
+                else return View(cmView);
             }
-            else return View(cmView);
-            
+            catch
+            {
+                ViewBag.Error = "Сотрудник с таким кодом уже существует";
+                return View(cmView);
+            }
+
         }
 
         public IActionResult Edit(int? id)
@@ -92,13 +102,13 @@ namespace CrudApp.Controllers
                 Employee = empManager.GetById(id),
                 Departments = deptManager.GetAll()
             };
-            if (ModelState.IsValid)
-            {
-                empManager.Update(employee);
-                return RedirectToAction("Index");
-            }
-            else return View(cmView);
-            
+
+                if (ModelState.IsValid)
+                {
+                    empManager.Update(employee);
+                    return RedirectToAction("Index");
+                }
+                else return View(cmView);
         }
 
 

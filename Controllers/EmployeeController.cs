@@ -78,7 +78,7 @@ namespace CrudApp.Controllers
             }
             catch
             {
-                ViewBag.Error = "Сотрудник с таким кодом уже существует";
+                ViewBag.Error = "Employee with the same code already exists.";
                 return View(cmView);
             }
 

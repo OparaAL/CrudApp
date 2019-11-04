@@ -45,7 +45,7 @@ namespace CrudApp.Models
             employee.DepartmentCode = empl.DepartmentCode;
             employee.Salary = empl.Salary;
             employee.Code = employee.Code;
-            employee.RestoreDepartment = employee.Code;
+            employee.RestoreDepartment = employee.DepartmentCode;
             repo.Employees.Update(employee);
             repo.SaveChanges();
         }
